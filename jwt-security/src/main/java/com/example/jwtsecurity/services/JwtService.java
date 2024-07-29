@@ -2,10 +2,8 @@ package com.example.jwtsecurity.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    private static final String SECRET_KEY = "7NqhDe7DHVr30gI8wk34LvZ3Qx8Dkecd";
+    private static final String SECRET_KEY = "8a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -28,11 +26,11 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-//    public String generateToken(UserDetails userDetails) {
-//        return buildToken(new HashMap<>(), UserDetails);
-//    }
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails);
+    }
 
-    private String buildToken(Map<String, Object> claims, UserDetails userDetails){
+    private String generateToken(Map<String, Object> claims, UserDetails userDetails){
         return Jwts
                 .builder()
                 .claims(claims)
